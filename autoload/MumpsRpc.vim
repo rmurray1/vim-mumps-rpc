@@ -1,7 +1,7 @@
 
 " autoload/mumps_rpc.vim
 
-function! mumps_rpc#connect(action)
+function! MumpsRpc(action)
     " Check if the current filetype is MUMPS for save action
     if a:action == 'save' && &filetype != 'mumps'
         echo "Error: Can only save files with filetype 'mumps'."
@@ -23,10 +23,10 @@ function! mumps_rpc#connect(action)
         endif
 
         " Check if the routine has a valid extension
-        "if l:routine !~ '\.\w\+$'
-        "    echo "Error: Routine must include a valid file extension."
-        "    return
-        "endif
+        if l:routine !~ '\.\w\+$'
+            echo "Error: Routine must include a valid file extension."
+            return
+        endif
 
         " Get the current working directory and form the full routine path
         let l:routine_path = getcwd() . '\' . l:routine
@@ -34,7 +34,7 @@ function! mumps_rpc#connect(action)
 
         " Create the command to load the routine
         let l:cmd = l:vimexe . l:routine_path . ' s=load'
-        echo l:cmd
+        "echo l:cmd
         call system(l:cmd)
 
         " Check if the file was successfully loaded
