@@ -1,7 +1,7 @@
 
 " autoload/mumps_rpc.vim
 
-function! MumpsRpc(action)
+function! MumpsRpcConnect(action)
     " Check if the current filetype is MUMPS for save action
     if a:action == 'save' && &filetype != 'mumps'
         echo "Error: Can only save files with filetype 'mumps'."
